@@ -32,14 +32,14 @@ namespace WeatherApp
             }
             else {
                 IWeatherStackService weatherStackService = new WeatherStackService();
-                Console.WriteLine("\n=== Weather Summary ===");
+                Console.WriteLine("\n=== Weather Summary ===");            
                 Console.WriteLine("Weather Conditions: \t" + string.Join(",", weatherResult.CurrentWeather.WeatherDescriptions.ToArray()));
                 Console.WriteLine("Wind Speed: \t" + weatherResult.CurrentWeather.WindSpeed);
                 Console.WriteLine("UV Index: \t" + weatherResult.CurrentWeather.UvIndex);
                 Console.WriteLine("=== End Weather Summary ===\n");
-                Console.WriteLine("Should I go outside ?" + weatherStackService.IsRaining(weatherResult.CurrentWeather).ToWeatherQuestionResponse());
-                Console.WriteLine("Should I wear sunscreen ?" + weatherStackService.IsApplySunscreen(weatherResult.CurrentWeather).ToWeatherQuestionResponse());
-                Console.WriteLine("Can I fly my kite? " + weatherStackService.IsRaining(weatherResult.CurrentWeather).ToWeatherQuestionResponse());
+                Console.WriteLine("Should I go outside? " + (!weatherStackService.IsRaining(weatherResult.CurrentWeather)).ToWeatherQuestionResponse());
+                Console.WriteLine("Should I wear sunscreen? " + weatherStackService.IsApplySunscreen(weatherResult.CurrentWeather).ToWeatherQuestionResponse());
+                Console.WriteLine("Can I fly my kite? " + weatherStackService.IsFlyKiteAllowable(weatherResult.CurrentWeather).ToWeatherQuestionResponse());
                 Console.ReadLine();
             }         
         }
